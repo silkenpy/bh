@@ -40,7 +40,6 @@ class JettyRestServer(val config: Config) : HttpServlet() {
 
             override fun doPost(req: HttpServletRequest, resp: HttpServletResponse) {
 
-                Thread.sleep(1000)
 
                 resp.apply {
                     status = HttpStatus.OK_200
@@ -54,7 +53,7 @@ class JettyRestServer(val config: Config) : HttpServlet() {
 
         handler.addServlet(ServletHolder(object : HttpServlet() {
             override fun doGet(req: HttpServletRequest, resp: HttpServletResponse) {
-                Thread.sleep(1000)
+
                 resp.apply {
                     status = HttpStatus.OK_200
                     addHeader("Content-Type", "text/plain; charset=utf-8")
