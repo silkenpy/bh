@@ -36,20 +36,37 @@ class JettyRestServer(val config: Config) : HttpServlet() {
         /**
          * It can handle multi-get requests for Urls in json format.
          */
+
+
         handler.addServlet(ServletHolder(object : HttpServlet() {
 
-            override fun doPost(req: HttpServletRequest, resp: HttpServletResponse) {
+            override fun doGet(req: HttpServletRequest, resp: HttpServletResponse) {
+//                println(req.pathInfo)
+
+                resp.apply {
+                    status = HttpStatus.SEE_OTHER_303
+                    setHeader("Location", "http://localhost:7070/ali")
+
+                }
+            }
+
+        })   , "/*")
+
+
+        handler.addServlet(ServletHolder(object : HttpServlet() {
+
+            override fun doGet(req: HttpServletRequest, resp: HttpServletResponse) {
 
 
                 resp.apply {
                     status = HttpStatus.OK_200
                     addHeader("Content-Type", "application/json; charset=utf-8")
                     //addHeader("Connection", "close")
-                    writer.write(gson.toJson("server is busy"))
+                    writer.write(gson.toJson("ali 29"))
                 }
             }
 
-        })   , "/")
+        })   , "/ali")
 
         handler.addServlet(ServletHolder(object : HttpServlet() {
             override fun doGet(req: HttpServletRequest, resp: HttpServletResponse) {
