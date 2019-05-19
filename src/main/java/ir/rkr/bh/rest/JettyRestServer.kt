@@ -62,7 +62,7 @@ class JettyRestServer(val config: Config) : HttpServlet() {
                     status = HttpStatus.OK_200
                     addHeader("Content-Type", "application/json; charset=utf-8")
                     //addHeader("Connection", "close")
-                    writer.write(gson.toJson("ali 29"))
+                    writer.write(gson.toJson(System.currentTimeMillis()))
                 }
             }
 
